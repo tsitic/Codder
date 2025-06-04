@@ -2,9 +2,8 @@
 
 import logging
 import sys
-import os
 
-from MyCoder import MyCoder
+from CwrdCoder import CwrdCoder
 from ConfigException import ConfigException
 from MyConfigReader import MyConfigReader
 from MyFileReader import MyFileReader
@@ -12,9 +11,9 @@ from MyFileReader import MyFileReader
 
 class MainClass:
     def __init__(self):
-        self._config_reader = MyConfigReader()
-        self._file_reader = MyFileReader()
-        self._coder = MyCoder()
+        self._config_reader: ConfigReader = None
+        self._file_reader: FileReader = None
+        self._coder: Coder = None
 
     def run(self, config_file_name: str) -> str:
         result = ""
@@ -35,10 +34,9 @@ class MainClass:
 
 
 def test_main():
-    argv_config_file_name = os.path.join(os.path.dirname(__file__), "config_example")
+    argv_config_file_name = "config_example"
     main_class = MainClass()
-    expected = "devivggyvgyvgivgididdddddddddddddddddddddddddddd"
-    assert main_class.run(argv_config_file_name) == expected
+    assert main_class.run(argv_config_file_name) == "test string result"
 
 
 if __name__ == '__main__':
